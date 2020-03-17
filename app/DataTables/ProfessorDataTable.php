@@ -36,6 +36,9 @@ class ProfessorDataTable extends DataTable
                     ]
                 );    
                 return $acoes;
+            })
+            ->editColumn('date', function ($professor){
+                return date('d/m/Y', strtotime($professor->date));
             });
     }
 
