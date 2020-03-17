@@ -17,7 +17,7 @@ class CreateProfessorsTable extends Migration
             $table->bigIncrements('id');
             $table->string('nome');
             $table->string('formacao');
-            $table->date('data_nascimento');
+            $table->date('date');
             $table->timestamps();
         });
     }

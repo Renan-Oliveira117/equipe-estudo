@@ -137,6 +137,10 @@ return [
             'text'        => 'Curso',
             'url'         => 'curso',
             'icon'        => 'fas fa-book',
+        ],[
+            'text'        => 'Professor',
+            'url'         => 'professor',
+            'icon'        => 'fas fa-user-tie',
         ],
     ],
 

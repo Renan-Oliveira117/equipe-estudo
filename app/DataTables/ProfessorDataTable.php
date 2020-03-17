@@ -2,7 +2,6 @@
 
 namespace App\DataTables;
 
-use App\Models\Curso;
 use App\Models\Professor;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -11,7 +10,7 @@ use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Html\Editor\Editor;
 
-class CursoDataTable extends DataTable
+class ProfessorDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -23,9 +22,9 @@ class CursoDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', function($curso) {
+            ->addColumn('action', function($professor) {
                 $acoes = link_to(
-                    route('curso.edit', $curso),
+                    route('professor.edit', $professor),
                     'Editar',
                     ['class' => 'btn btn-sm btn-primary']
                 );
@@ -33,23 +32,20 @@ class CursoDataTable extends DataTable
                     'Excluir',
                     [
                         'class' => 'btn btn-sm btn-danger',
-                        'onclick' => "excluir('" .route('curso.destroy', $curso) ."')"
+                        'onclick' => "excluir('" .route('professor.destroy', $professor) ."')"
                     ]
                 );    
                 return $acoes;
-            })
-            ->editColumn('professor_id', function($curso) {
-                return Professor::find($curso->professor_id)->nome;
             });
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Curso $model
+     * @param \App\ProfessorDataTable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Curso $model)
+    public function query(Professor $model)
     {
         return $model->newQuery();
     }
@@ -62,13 +58,13 @@ class CursoDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('curso-table')
+                    ->setTableId('professor-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
                     ->orderBy(1)
                     ->buttons(
-                        Button::make('create')->text('Adicionar Curso'),
+                        Button::make('create')->text('Adicionar Professor'),
                         Button::make('export')->text('Exportar'),
                         Button::make('print')->text('Imprimir')
                     )
@@ -87,8 +83,8 @@ class CursoDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('nome'),
-            Column::make('professor_id')
-            ->title('Professor'),
+            Column::make('formacao'),
+            Column::make('date')->title('Data Nascimento'),
             Column::computed('action')
                   ->exportable(false)
                   ->title('Ações')
@@ -103,6 +99,6 @@ class CursoDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Curso_' . date('YmdHis');
+        return 'Professor_' . date('YmdHis');
     }
 }

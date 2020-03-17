@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Curso;
-use App\Professor;
+use App\Models\Professor;
 use Illuminate\Http\Request;
 use App\DataTables\CursoDataTable;
 use App\Service\CursoService;
