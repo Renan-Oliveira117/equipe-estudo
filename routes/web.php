@@ -20,5 +20,8 @@ Auth::routes([
 ]);
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('curso', 'CursoController');
-Route::resource('professor', 'ProfessorController');
+Route::middleware('auth')->group( function() {
+    Route::resource('curso', 'CursoController');
+    Route::resource('professor', 'ProfessorController');
+});
+
