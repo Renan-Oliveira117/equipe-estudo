@@ -129,9 +129,9 @@ return [
     'menu' => [
        
         [
-            'text'        => 'Exemplo',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-file',
+            'text'        => 'Aluno',
+            'url'         => 'aluno',
+            'icon'        => 'fas fa-graduation-cap',
         ],
         [
             'text'        => 'Curso',
