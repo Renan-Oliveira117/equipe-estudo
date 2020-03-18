@@ -16,7 +16,6 @@ class AlunoService
                 'aluno' => $aluno
             ];
         } catch (Exception $err) {
-            dd($err->getMessage());
             return [
                 'status' => false,
                 'erro' => $err->getMessage()

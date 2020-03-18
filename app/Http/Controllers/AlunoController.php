@@ -25,7 +25,7 @@ class AlunoController extends Controller
 
    
     public function store(AlunoRequest $request)
-    { dd($request);
+    { 
         $aluno = AlunoService::store($request->all());
            
         if ($aluno['status']){

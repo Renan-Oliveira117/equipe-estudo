@@ -21,7 +21,7 @@ class AlunoRequest extends FormRequest
                 return [
                     'nome' => 'required',
                     'cpf' => 'required',
-                    'date_nascimento' => 'required',
+                    'data_nascimento' => 'required',
                     'cep' => 'required',
                     'logradouro' => 'required',
                     'numero' => 'required',
@@ -29,7 +29,6 @@ class AlunoRequest extends FormRequest
                     'cidade' => 'required',
                     'estado' => 'required',
                     'curso_id' => 'required',
-                    'foto' => 'required',
                 ];
             }
             case 'PUT':
@@ -44,9 +43,7 @@ class AlunoRequest extends FormRequest
                     'bairro' => 'required',
                     'cidade' => 'required',
                     'estado' => 'required',
-                    'curso_id' => 'required',
-                    'foto' => 'required',
-                    
+                    'curso_id' => 'required',                    
                 ];
             }
         }

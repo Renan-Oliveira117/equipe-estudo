@@ -51,7 +51,7 @@ class AlunoDataTable extends DataTable
                     ->buttons(
                         Button::make('create')->text('Novo Aluno'),
                         Button::make('export'),
-                        Button::make('print')->text('imprimir'),
+                        Button::make('print')->text('imprimir')
                     );
     }
 
@@ -70,7 +70,7 @@ class AlunoDataTable extends DataTable
             Column::make('nome'),
             Column::make('cpf'),
             Column::make('data_nascimento'),
-            Column::make('curso'),
+            Column::make('curso_id'),
             Column::make('created_at'),
             Column::make('updated_at'),
         ];

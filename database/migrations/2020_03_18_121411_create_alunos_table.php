@@ -16,10 +16,10 @@ class CreateAlunosTable extends Migration
         Schema::create('alunos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome',150);
-            $table->string('cpf',12)->unique();
+            $table->string('cpf')->unique();
             $table->date('data_nascimento');
             $table->string('cep',9);
-            $table->string('logradouro',);
+            $table->string('logradouro');
             $table->integer('numero');
             $table->string('bairro',100);
             $table->string('cidade',100);
