@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Aluno;
+use Collective\Html\FormFacade;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
@@ -21,7 +22,26 @@ class AlunoDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'aluno.action');
+            ->addColumn('action', function($aluno){
+                $acoes = link_to(
+                    route('aluno.edit' , $aluno),
+                    'Editar',
+                    ['class' => 'btn btn-sm btn-primary']
+                );
+                $acoes .= FormFacade::button(
+                    "Excluir",
+                    ['class' => 
+                        'btn btn-sm btn-danger ml-1',
+                        'onclik' =>"excluir('" . route('aluno.destroy', $aluno) ."')"
+                        ]
+                );
+                return $acoes;
+
+            })
+            ->editColumn('imagem', function ($aluno) {
+                return '<img style="height: 50px;" src="' . asset('imagens/' . $aluno->imagem) . '" />';
+            })
+            ->rawColumns(['action', 'imagem']);
     }
 
     /**
@@ -70,9 +90,10 @@ class AlunoDataTable extends DataTable
             Column::make('nome'),
             Column::make('cpf'),
             Column::make('data_nascimento'),
+            Column::make('imagem'),
             Column::make('curso_id'),
             Column::make('created_at'),
-            Column::make('updated_at'),
+            
         ];
     }
 

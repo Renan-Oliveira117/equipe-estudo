@@ -11,9 +11,9 @@ use App\Service\AlunoService;
 class AlunoController extends Controller
 {
     
-    public function index(AlunoDataTAble $alunoDataTAble)
+    public function index(AlunoDataTable $alunoDataTable)
     {
-        return $alunoDataTAble->render('aluno.index');
+        return $alunoDataTable->render('aluno.index');
     }
 
     
@@ -24,7 +24,7 @@ class AlunoController extends Controller
     }
 
    
-    public function store(AlunoRequest $request)
+    public function store(Request $request)
     { 
         $aluno = AlunoService::store($request->all());
            
@@ -41,23 +41,40 @@ class AlunoController extends Controller
  
     public function show($id)
     {
+       
         
     }
 
  
     public function edit($id)
     {
-        
+        $retorno = AlunoService::getAlunoPorId($id);
+
+        if($retorno ['status']){
+            return view ('aluno.form', ['aluno' => $retorno['aluno'], 'curso' => $retorno ['curso'],
+            
+            ]);
+        }
+       return back()->withFalha('Ocorreu um erro ao selecionar o aluno');   
     }
+
 
     public function update(Request $request, $id)
     {
-        
+         $retorno = AlunoService::update($request->all(), $id);
+         if ($retorno['status']){
+             return redirect()->route('aluno.index');
+         }   
+         return back()->withInput();
     }
 
   
     public function destroy($id)
     {
-        
+        $retorno = AlunoService::destroy($id);
+        if ($retorno['status']){
+            return "Sucesso";
+        }
+        return abort(403,'Erro ao Excluir' .$retorno['erro']);
     }
 }
