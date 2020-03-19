@@ -61,9 +61,15 @@
                 @error('estado') <span class= "text-danger">{{ $message}}</span> @enderror
             </div>
             <div class="form-group">
-                {!! Form::label('curso_id', 'Curso') !!}
-                {!! Form::select('curso_id', $curso, null, ['class' => 'form-control']) !!}
+                {!! Form::label('imagem_temp', 'Imagem') !!}
+                {!! Form::file('imagem_temp', ['class' => 'form-control', $aluno?? 'required']) !!}
+                @error('imagem_temp') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
+            <div class="form-group">
+                {!! Form::label('curso_id', 'Curso') !!}
+                {!! Form::select('curso_id', $curso, null, ['class' => 'form-control',]) !!}
+            </div>
+           
          
             {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
