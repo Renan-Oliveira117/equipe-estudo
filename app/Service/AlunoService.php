@@ -102,7 +102,7 @@ class AlunoService
     public static function uploadImagem($aluno, $arquivo)
     {
         $imagem =  $aluno->id . time() . "." . $arquivo->getClientOriginalExtension();
-        $arquivo->move(public_path() . '/imagens' , $imagem);
+        $arquivo->move(public_path() . '/imagens/', $imagem);
 
         return $imagem;
         
