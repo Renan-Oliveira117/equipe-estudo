@@ -39,11 +39,10 @@ class AlunoService
     {
          try{
              $aluno = Aluno::findOrFail($id);
-             $curso  = Curso::all()->pluck('nome','id');
+            
              return[
                  'status' => true,
                  'aluno' => $aluno, 
-                 'curso' => $curso
              ];
          }catch(Exception $err)
          {
@@ -85,8 +84,7 @@ class AlunoService
     public static function destroy($id)
     {
         try{
-            $aluno = Aluno::finsOrFail($id);
-            $aluno->curso()->detach();
+            $aluno = Aluno::findOrFail($id);
             $aluno ->delete();
             return[
                 'status' => true,

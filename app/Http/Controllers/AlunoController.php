@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\DataTables\AlunoDataTable;
 use App\Http\Requests\AlunoRequest;
+use App\Models\Aluno;
 use App\Models\Curso;
 use App\Service\AlunoService;
+use App\Service\CursoService;
 
 class AlunoController extends Controller
 {
@@ -48,10 +50,13 @@ class AlunoController extends Controller
  
     public function edit($id)
     {
-        $retorno = AlunoService::getAlunoPorId($id);
+        $aluno = AlunoService::getAlunoPorId($id);
+        $curso = CursoService::getCursoPorId($id);
 
-        if($retorno ['status']){
-            return view ('aluno.form', ['aluno' => $retorno['aluno'], 'curso' => $retorno ['curso'],
+        if($aluno ['status']){
+            return view ('aluno.form',[
+             'aluno' => $aluno ['aluno'],
+             'curso' => $curso ['curso']
             
             ]);
         }
