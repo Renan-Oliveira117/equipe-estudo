@@ -87,7 +87,7 @@ class AlunoService
         try{
             $aluno = Aluno::finsOrFail($id);
             $aluno->curso()->detach();
-            $aluno ->delete();
+            $aluno->delete();
             return[
                 'status' => true,
             ];
@@ -104,7 +104,7 @@ class AlunoService
     public static function uploadImagem($aluno, $arquivo)
     {
         $imagem =  $aluno->id . time() . "." . $arquivo->getClientOriginalExtension();
-        $arquivo->move(public_path() . '/imagens' , $imagem);
+        $arquivo->move(public_path() . '/imagens/', $imagem);
 
         return $imagem;
         

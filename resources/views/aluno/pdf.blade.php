@@ -25,6 +25,27 @@
 <body>
 <center><h1>Alunos Cadastrados</h1></center>
 <hr>
-
+<div class="table-response-sm">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Aluno</th>
+                <th scope="col">Curso</th>
+                <th scope="col">Professor</th>
+            </tr>
+        </thead>
+        <tbody>
+        @forelse ($relatorioData as $relatorio)
+        <tr>
+            <td>{{ $relatorio->aluno_nome }}</td>
+            <td>{{ $relatorio->curso_nome }}</td>
+            <td>{{ $relatorio->professor_nome }}</td>
+        </tr>
+        @empty
+        <h2>Sem alunos cadastradas</h2>
+        @endforelse
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
