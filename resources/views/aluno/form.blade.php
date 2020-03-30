@@ -32,33 +32,33 @@
             </div>
             <div class="form-group">
                 {!! Form::label('cep', 'CEP')!!}
-                {!! Form::text('cep',null, ['class'=>'form-control','required']) !!}
+                {!! Form::text('cep',null, ['class'=>'form-control','placeholder'=> 'Digite CEP','required']) !!}
                 @error('cep') <span class= "text-danger">{{ $message}}</span> @enderror
             </div>
             <div class="form-group">
                 {!! Form::label('logradouro', 'Logradouro')!!}
-                {!! Form::text('logradouro',null, ['class'=>'form-control','required']) !!}
+                {!! Form::text('logradouro',null, ['class'=>'form-control', 'placeholder'=>'Logradouro','onfocusout'=>'buscaCep()','required']) !!}
                 @error('logradouro') <span class= "text-danger">{{ $message}}</span> @enderror
             </div>
             <div class="form-group">
-                {!! Form::label('numero', 'Numero')!!}
-                {!! Form::number('numero',null, ['class'=>'form-control','required']) !!}
-                @error('numero') <span class= "text-danger">{{ $message}}</span> @enderror
-            </div>
-            <div class="form-group">
                 {!! Form::label('bairro', 'Bairro')!!}
-                {!! Form::text('bairro',null, ['class'=>'form-control','required']) !!}
+                {!! Form::text('bairro',null, ['class'=>'form-control','placeholder'=>'Bairro','onfocusout'=>'buscaCep()','required']) !!}
                 @error('bairro') <span class= "text-danger">{{ $message}}</span> @enderror
             </div>
             <div class="form-group">
                 {!! Form::label('cidade', 'Cidade')!!}
-                {!! Form::text('cidade',null, ['class'=>'form-control','required']) !!}
+                {!! Form::text('cidade',null, ['class'=>'form-control','placeholder'=>'Cidade','onfocusout'=>'buscaCep()','required']) !!}
                 @error('cidade') <span class= "text-danger">{{ $message}}</span> @enderror
             </div>
             <div class="form-group">
                 {!! Form::label('estado', 'Estado')!!}
-                {!! Form::text('estado',null, ['class'=>'form-control','required']) !!}
+                {!! Form::text('estado',null, ['class'=>'form-control','placeholder'=>'Estado','onfocusout'=>'buscaCep()','required']) !!}
                 @error('estado') <span class= "text-danger">{{ $message}}</span> @enderror
+            </div>
+            <div class="form-group">
+                {!! Form::label('numero', 'Numero')!!}
+                {!! Form::number('numero',null, ['class'=>'form-control','placeholder'=>'Digite Número da residencia ','required']) !!}
+                @error('numero') <span class= "text-danger">{{ $message}}</span> @enderror
             </div>
             <div class="form-group">
                 {!! Form::label('imagem_temp', 'Imagem') !!}
@@ -85,4 +85,25 @@
 
 @section('js')       
 
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+
+    function buscaCep()
+    {
+        let cep = document.getElementById('cep').value;
+        let url = 'https://viacep.com.br/ws/'+ cep +'/json/';
+
+        axios.get(url)
+        .then(function(response){
+            document.getElementById('logradouro').value=response.data.logradouro
+            document.getElementById('bairro').value=response.data.bairro
+            document.getElementById('cidade').value=response.data.localidade
+            document.getElementById('estado').value=response.data.uf
+        })
+
+        .catch(function(error){
+            alert('Ops ! CEP não encontrado' )
+        })
+    }
+</script>
 @stop
