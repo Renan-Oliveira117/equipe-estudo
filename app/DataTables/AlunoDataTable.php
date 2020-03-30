@@ -26,7 +26,7 @@ class AlunoDataTable extends DataTable
                     "Excluir",
                     ['class' => 
                         'btn btn-sm btn-danger ml-1',
-                        'onclik' =>"excluir('" . route('aluno.destroy', $aluno) ."')"
+                        'onclick' =>"excluir('" . route('aluno.destroy', $aluno) ."')"
                         ]
                 );
                 return $acoes;
