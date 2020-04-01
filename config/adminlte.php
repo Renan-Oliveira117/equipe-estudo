@@ -127,7 +127,7 @@ return [
     */
 
     'menu' => [
-       
+            ['header' => 'Navegação Principal'],
         [
             'text'        => 'Aluno',
             'url'         => 'aluno',
@@ -143,6 +143,12 @@ return [
             'url'         => 'professor',
             'icon'        => 'fas fa-user-tie',
         ],
+        [
+            'text'        => 'Usuário',
+            'url'         => 'usuario',
+            'icon'        => 'fas fa-user',
+        ],
+            ['header' => ' '],
         [
             'text'        => 'Relatório',
             'url'         => 'relatorio',
