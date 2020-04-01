@@ -24,6 +24,7 @@ Route::middleware('auth')->group( function() {
     Route::resource('curso', 'CursoController');
     Route::resource('professor', 'ProfessorController');
     Route::resource('aluno', 'AlunoController');
+    Route::resource('usuario', 'UserController');
 
     Route::get('relatorio', 'PdfController@index');
 });

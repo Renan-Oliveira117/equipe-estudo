@@ -25,6 +25,7 @@
                 <div class="form-group">
                     {!! Form::label('professor_id', 'Professor') !!}
                     {!! Form::select('professor_id', $professor, null, ['class' => 'form-control']) !!}
+                    @error('professor_id') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
 
                 {!! Form::submit('Salvar', ['class' => 'btn btn-success']) !!}
