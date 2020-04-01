@@ -60,7 +60,6 @@ class ProfessorService
         try {
             $user = Professor::findOrFail($id);
             $user->delete();
-            dd($user);
             return [
                 'status' => true,
             ];

@@ -7,6 +7,7 @@ use App\Models\Curso;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class AlunoService
 {
@@ -15,18 +16,19 @@ class AlunoService
         try {
             DB::beginTransaction();
 
-            $aluno = Aluno::create(Arr::except($request,['alunos','imagem_temp']));
+            $aluno = Aluno::create(Arr::except($request,['cursos','imagem_temp']));
 
             $aluno->update([
                 'imagem' => self::uploadImagem($aluno, $request['imagem_temp'])
             ]);
+
             DB::commit();
             return [
                 'status' => true,
                 'aluno' => $aluno
             ];
+            
         } catch (Exception $err) {
-            dd($err->getMessage());
             DB::rollBack();
             return [
                 'status' => false,
@@ -38,14 +40,12 @@ class AlunoService
     public static function getAlunoPorId($id)
     {
          try{
-             $aluno = Aluno::findOrFail($id);
-            
+             $aluno = Aluno::findOrFail($id);            
              return[
                  'status' => true,
-                 'aluno' => $aluno, 
+                 'aluno' => $aluno
              ];
-         }catch(Exception $err)
-         {
+         }catch(Exception $err) {
              return [
                  'status' => false,
                  'erro' => $err->getMessage()
@@ -60,7 +60,7 @@ class AlunoService
             $aluno = Aluno::findOrFail($id);
             $aluno->update(Arr::except($request, ['cursos', 'imagem_temp']));
 
-            if (isset($request['imagem_temp'])) {
+            if ($request['imagem_temp']) {
                 $aluno->update([
                     'imagem' => self::uploadImagem($aluno, $request['imagem_temp'])
                 ]);
@@ -73,7 +73,6 @@ class AlunoService
             ];
         } catch(Exception $err) {
             DB::rollBack();
-            dd($err->getMessage());
             return [
                 'status' => false,
                 'erro' => $err->getMessage()
@@ -85,9 +84,9 @@ class AlunoService
     {
         try{
             $aluno = Aluno::findOrFail($id);
-            $aluno ->delete();
+            $aluno->delete();
             return[
-                'status' => true,
+                'status' => true
             ];
         }catch (Exception $err){
             return [

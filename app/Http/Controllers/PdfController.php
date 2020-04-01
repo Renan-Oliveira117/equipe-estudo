@@ -6,31 +6,21 @@ use DB;
 use App\Models\Aluno;
 use App\Models\Curso;
 use App\Models\Professor;
+use App\Service\PdfService;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade as PDF;
+use PDF;
 
 class PdfController extends Controller
 {
-    public function index(){
+    public function index()
+    {
+        return view ('aluno.pdf', [
+        'relatorioData' => PdfService::getRelatorioData()
+    ]);
+}
 
-        $relatorioData=$this->getRelatorioData();
-        return view('aluno.pdf')->with('relatorioData',$relatorioData);
-
-    }
-
-    public function getRelatorioData(){
-
-        $relatorioData=DB::table('alunos')
-        ->select('alunos.nome as aluno_nome', 'cursos.nome as curso_nome', 'professors.nome as professor_nome')
-        ->join('cursos', 'alunos.curso_id', '=', 'cursos.id')
-        ->join('professors', 'cursos.professor_id', '=', 'professors.id')
-        ->get();
-
-        return  $relatorioData;
-    } 
-
-    public function pdf() {
-        
+    public function pdf() 
+    {        
         $pdf = Aluno::all();
             return \PDF::loadView('aluno.pdf', compact('alunos'))->stream();
     }

@@ -63,9 +63,8 @@ class CursoService
         try {
             $user = Curso::findOrFail($id);
             $user->delete();
-            dd($user);
             return [
-                'status' => true,
+                'status' => true
             ];
         } catch (Exception $erro) {
             return [
