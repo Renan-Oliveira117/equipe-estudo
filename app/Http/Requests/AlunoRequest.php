@@ -20,9 +20,9 @@ class AlunoRequest extends FormRequest
             {
                 return [
                     'nome' => 'required',
-                    'cpf' => 'required',
+                    'cpf' => 'required|cpf',
                     'data_nascimento' => 'required',
-                    'cep' => 'required',
+                    'cep' => 'required|cep',
                     'logradouro' => 'required',
                     'numero' => 'required',
                     'bairro' => 'required',
