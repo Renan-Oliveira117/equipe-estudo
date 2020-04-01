@@ -127,7 +127,7 @@ return [
     */
 
     'menu' => [
-       
+            ['header' => 'Navegação Principal'],
         [
             'text'        => 'Aluno',
             'url'         => 'aluno',
@@ -143,6 +143,12 @@ return [
             'url'         => 'professor',
             'icon'        => 'fas fa-user-tie',
         ],
+        [
+            'text'        => 'Usuário',
+            'url'         => 'usuario',
+            'icon'        => 'fas fa-user',
+        ],
+            ['header' => ' '],
         [
             'text'        => 'Relatório',
             'url'         => 'relatorio',
@@ -215,6 +221,11 @@ return [
                     'type' => 'css',
                     'asset' => false,
                     'location' => '//cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js',
                 ],
             ],
         ],

@@ -20,8 +20,10 @@ class AlunoController extends Controller
 
     
     public function create()
-    {
-        $curso = Curso::all()->pluck('nome', 'id');
+    {   
+        //return view('teste');
+       //
+        $curso = Curso::all()->pluck('nome');
         return view('aluno.form', compact('curso'));
     }
 
@@ -55,8 +57,7 @@ class AlunoController extends Controller
 
         if($aluno ['status']){
             return view ('aluno.form',[
-             'aluno' => $aluno ['aluno'],
-             'curso' => $curso ['curso']
+             'aluno' => $aluno ['aluno']
             
             ]);
         }
